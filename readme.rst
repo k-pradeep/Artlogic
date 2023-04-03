@@ -8,6 +8,7 @@ This project will process the datasets available in data--> input--> data.xlsx, 
 * TaskA will forecast the subscription growth and generates csv files in data --> output folder. 
     * taskA_subcription_growth.csv  will provide insight subscription growth during the year 2023
     * TaskA_ARR_per_month will provide summarized revenue per TaskA_ARR_per_month
+    
 * TaskB will process sheet1.csv(dataset A), sheet2.csv(dataset B), sheet3.csv(dataset C) and generates csv files in data --> output folder
     * TaskB_sheet(1/2/3).csv will provide cash in bank per day
     * TaskB_cummulative_sum.csv will provide total cash in bank combining all datasets
