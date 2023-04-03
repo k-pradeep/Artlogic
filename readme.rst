@@ -24,8 +24,8 @@ This project uses Python standard library
 Assumptions
 -----------
 
-* This project was intended to run Windows machine. To make the code in unix machine, pathlib.PureWindowsPath in all files needs to be updated
-* This code is intended to process small amount of dataset, therefore the processed rows are stored in memory and later written to csv files. In case, larger datasets to be processed then code needs to be improvised.
+* This project was intended to run in Windows machine. To make the code run in unix machine, pathlib.PureWindowsPath should be updated
+* This code is intended to process small amount of dataset, therefore the processed rows are stored in memory and later written to csv files. In case, larger datasets to be processed then code needs to be improvised
 * The revenue generated across all tasks is in USD. As per Google, used 1 GBP = 1.23 USD as conversion rate
 
 Next Steps
