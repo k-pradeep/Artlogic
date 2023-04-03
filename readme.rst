@@ -2,8 +2,10 @@ Revenue Forecast
 ==========
 
 # About the Project
+-------------------
 
 This project will process the datasets available in data--> input--> data.xlsx, will do the following:
+
 * convert_xlsx_csv will convert data.xlsx to sheet1.csv(dataset A), sheet2.csv(dataset B), sheet3.csv(dataset C) 
 * TaskA will forecast the subscription growth and generates csv files in data --> output folder. 
     * taskA_subcription_growth.csv  will provide insight subscription growth during the year 2023
@@ -13,7 +15,7 @@ This project will process the datasets available in data--> input--> data.xlsx, 
     * TaskB_sheet(1/2/3).csv will provide cash in bank per day
     * TaskB_cummulative_sum.csv will provide total cash in bank combining all datasets
 
-* helper python file is a placeholder to hold all utility functions. It holds write_to_csv function to write data to csv files
+* helper file is a placeholder to hold all utility functions. It holds write_to_csv function to write data to csv files
 Libraries
 ------------
 
@@ -29,7 +31,7 @@ Assumptions
 Next Steps
 ---------
 
-Unit tests
+Due to time constraints, unit tests are not coded at this time.
 
 
 
