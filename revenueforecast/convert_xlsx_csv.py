@@ -145,7 +145,7 @@ if __name__ == "__main__":
     )
     correct_dateobjects(csv_file_path)
 
-    # corrects schedule_next_scheduled_date column in sheet 2
+    # corrects schedule_next_scheduled_date column in sheet 3
     csv_file_path = pathlib.PureWindowsPath(
         current_working_directory, "data", "input", "sheet3.csv"
     )
