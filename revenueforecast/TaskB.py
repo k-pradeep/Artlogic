@@ -28,16 +28,14 @@ def cash_per_day(cash_in_bank, sheet_name):
 
     # save output to a file
     file_name = "TaskB_" + sheet_name
-    output_csv_file = pathlib.PureWindowsPath(
+    output_csv_file = pathlib.Path(
         current_working_directory, "data", "output", file_name
     )
 
     write_to_csv(output_csv_file, "w", data, header)
 
 
-csv_file = pathlib.PureWindowsPath(
-    current_working_directory, "data", "input", "sheet1.csv"
-)
+csv_file = pathlib.Path(current_working_directory, "data", "input", "sheet1.csv")
 # Process data in Sheet A
 cash_in_bank = [0] * 365
 with open(csv_file, "r") as file:
@@ -63,7 +61,6 @@ with open(csv_file, "r") as file:
             billing_period_end_date, next_billing_date
         )
         days_to_next_billing_date = (next_billing_date - datetime(2023, 1, 1)).days
-        print(f"days_to_next_billing_date - {days_to_next_billing_date}")
         for i in range(days_to_next_billing_date):
             cash_in_bank[i] += 0
         # cash_in_bank[days_to_next_billing_date] += price
@@ -81,9 +78,7 @@ with open(csv_file, "r") as file:
 
 # Process data in Sheet B
 cash_in_bank = [0] * 365
-csv_file = pathlib.PureWindowsPath(
-    current_working_directory, "data", "input", "sheet2.csv"
-)
+csv_file = pathlib.Path(current_working_directory, "data", "input", "sheet2.csv")
 with open(csv_file, "r") as file:
     next(file)  # Skip the header row
     for line in file:
@@ -122,9 +117,7 @@ with open(csv_file, "r") as file:
 
 # Process data in Sheet C
 cash_in_bank = [0] * 365
-csv_file = pathlib.PureWindowsPath(
-    current_working_directory, "data", "input", "sheet3.csv"
-)
+csv_file = pathlib.Path(current_working_directory, "data", "input", "sheet3.csv")
 with open(csv_file, "r") as file:
     next(file)  # Skip the header row
     for line in file:

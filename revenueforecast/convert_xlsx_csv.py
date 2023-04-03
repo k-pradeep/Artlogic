@@ -43,7 +43,7 @@ def convert_xlsx_csv():
                 csv_file_name = sheet_name.replace("xl/worksheets/", "").replace(
                     ".xml", ".csv"
                 )
-                csv_path = pathlib.PureWindowsPath(
+                csv_path = pathlib.Path(
                     current_working_directory, "data", "input", csv_file_name
                 )
                 print(csv_path)
@@ -136,17 +136,19 @@ def correct_dateobjects(csv_file):
 
 
 if __name__ == "__main__":
+
+    # convert xlsx file to csv files
     convert_xlsx_csv()
     current_working_directory = pathlib.Path(__file__).parent.resolve()
 
     # corrects schedule_next_scheduled_date column in sheet 2
-    csv_file_path = pathlib.PureWindowsPath(
+    csv_file_path = pathlib.Path(
         current_working_directory, "data", "input", "sheet2.csv"
     )
     correct_dateobjects(csv_file_path)
 
     # corrects schedule_next_scheduled_date column in sheet 3
-    csv_file_path = pathlib.PureWindowsPath(
+    csv_file_path = pathlib.Path(
         current_working_directory, "data", "input", "sheet3.csv"
     )
     correct_dateobjects(csv_file_path)

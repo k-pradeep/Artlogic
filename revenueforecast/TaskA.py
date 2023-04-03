@@ -86,7 +86,7 @@ def calculate_ARR_per_month(subscription_data):
 
     # write to csv file
     monthly_arr_csv_file_path = str(
-        pathlib.PureWindowsPath(
+        pathlib.Path(
             pathlib.Path(__file__).parent.resolve(),
             "data",
             "output",
@@ -99,7 +99,7 @@ def calculate_ARR_per_month(subscription_data):
 
 def main():
     current_working_directory = pathlib.Path(__file__).parent.resolve()
-    csv_file = pathlib.PureWindowsPath(
+    csv_file = pathlib.Path(
         current_working_directory, "data", "input", "sheet1.csv"
     )
     # csv_file = "C:\repos\Artlogic\revenueforecast\data\input\data\input\sheet1.csv"
@@ -141,7 +141,7 @@ def main():
         # write forecasted rows to csv
         # output file location
         salesforecast_csv_file_path = str(
-            pathlib.PureWindowsPath(
+            pathlib.Path(
                 pathlib.Path(__file__).parent.resolve(),
                 "data",
                 "output",
