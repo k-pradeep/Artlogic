@@ -16,6 +16,14 @@ This project will process the datasets available in data--> input--> data.xlsx, 
     * TaskB_cummulative_sum.csv will provide total cash in bank combining all datasets
 
 * helper file is a placeholder to hold all utility functions. It holds write_to_csv function to write data to csv files
+
+How to run?
+------------
+Navigate to revenue forcast folder, make sure data.xlsx is available in input folder, and check for empty output folder (data --> output)
+* python convert_xlsx_csv
+* python TaskA
+* python TaskB
+
 Libraries
 ------------
 
@@ -24,14 +32,14 @@ This project uses Python standard library
 Assumptions
 -----------
 
-* This project was intended to run in Windows machine. To make the code run in unix machine, pathlib.PureWindowsPath should be updated
 * This code is intended to process small amount of dataset, therefore the processed rows are stored in memory and later written to csv files. In case, larger datasets to be processed then code needs to be improvised
 * The revenue generated across all tasks is in USD. As per Google, used 1 GBP = 1.23 USD as conversion rate
 
 Next Steps
 ---------
 
-Due to time constraints, unit tests are not coded at this time.
+* Due to time constraints, unit tests are not coded at this time.
+
 
 
 
