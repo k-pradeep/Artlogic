@@ -20,8 +20,11 @@ This project will process the datasets available in data--> input--> data.xlsx, 
 How to run?
 ------------
 Navigate to revenue forcast folder, make sure data.xlsx is available in input folder, and check for empty output folder (data --> output)
+
 * python convert_xlsx_csv
+
 * python TaskA
+
 * python TaskB
 
 Libraries
