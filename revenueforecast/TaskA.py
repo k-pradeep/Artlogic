@@ -18,19 +18,6 @@ def get_forecasted_price(price):
         return price * 1.015
 
 
-# def write_to_csv(csv_file_path, mode, data, header):
-#     """
-#     Write data to csv file
-#     """
-#     with open(csv_file_path, mode, newline="") as csvfile:
-#         # create a CSV writer object
-#         writer = csv.writer(csvfile)
-#         writer.writerow(header)
-#         # write the new rows to the CSV file
-#         for row in data:
-#             writer.writerow(row)
-
-
 def calcuate_subsciption_growth(
     currency, price, period_start, period_end, next_billing_date
 ):
@@ -92,7 +79,9 @@ def calculate_ARR_per_month(subscription_data):
 
 if __name__ == "__main__":
     current_working_directory = pathlib.Path(__file__).parent.resolve()
-    csv_file = pathlib.Path(current_working_directory, "data", "input", "sheet1.csv") # noqa E501
+    csv_file = pathlib.Path(
+        current_working_directory, "data", "input", "sheet1.csv"
+    )  # noqa E501
 
     with open(csv_file, "r") as file:
         reader = csv.DictReader(file)
