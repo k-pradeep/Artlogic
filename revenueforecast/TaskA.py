@@ -1,7 +1,7 @@
 import csv
 import pathlib
 import datetime
-
+from helper import write_to_csv
 
 forecast_rows = []
 
@@ -18,17 +18,17 @@ def get_forecasted_price(price):
         return price * 1.015
 
 
-def write_to_csv(csv_file_path, mode, data, header):
-    """
-    Write data to csv file
-    """
-    with open(csv_file_path, mode, newline="") as csvfile:
-        # create a CSV writer object
-        writer = csv.writer(csvfile)
-        writer.writerow(header)
-        # write the new rows to the CSV file
-        for row in data:
-            writer.writerow(row)
+# def write_to_csv(csv_file_path, mode, data, header):
+#     """
+#     Write data to csv file
+#     """
+#     with open(csv_file_path, mode, newline="") as csvfile:
+#         # create a CSV writer object
+#         writer = csv.writer(csvfile)
+#         writer.writerow(header)
+#         # write the new rows to the CSV file
+#         for row in data:
+#             writer.writerow(row)
 
 
 def calcuate_subsciption_growth(
@@ -40,6 +40,10 @@ def calcuate_subsciption_growth(
     ):
         price = round(get_forecasted_price(price), 2)
         total_days_in_billing = period_end - period_start
+
+        if total_days_in_billing.days < 0:
+            raise Exception("End date is less than start date")
+
         period_start = next_billing_date
         # #get last day of the month
         # last_day = calendar.monthrange(period_start.date().year, period_start.date().month)[1]
@@ -64,7 +68,6 @@ def calculate_ARR_per_month(subscription_data):
     """
     calculate ARR per month
     """
-    pass
     revenue_per_month = {}
     for row in subscription_data:
         # print(row)
@@ -79,31 +82,17 @@ def calculate_ARR_per_month(subscription_data):
     # generate Monthly ARR
     monthly_ARR = []
     for key, value in revenue_per_month.items():
-        month = datetime.datetime(year=2023, month=int(key), day=1).strftime("%B")
+        month = datetime.datetime(year=2023, month=int(key), day=1).strftime(
+            "%B"
+        )  # noqa E501
         monthly_ARR.append([month, round(value, 2)])
 
-    header = ["Month", "ARR_per_month"]
-
-    # write to csv file
-    monthly_arr_csv_file_path = str(
-        pathlib.Path(
-            pathlib.Path(__file__).parent.resolve(),
-            "data",
-            "output",
-            "taskA_ARR_per_month.csv",
-        )
-    )
-
-    write_to_csv(monthly_arr_csv_file_path, "w", monthly_ARR, header)
+    return monthly_ARR
 
 
-def main():
+if __name__ == "__main__":
     current_working_directory = pathlib.Path(__file__).parent.resolve()
-    csv_file = pathlib.Path(
-        current_working_directory, "data", "input", "sheet1.csv"
-    )
-    # csv_file = "C:\repos\Artlogic\revenueforecast\data\input\data\input\sheet1.csv"
-    # csv_file = "sheet1.csv"
+    csv_file = pathlib.Path(current_working_directory, "data", "input", "sheet1.csv") # noqa E501
 
     with open(csv_file, "r") as file:
         reader = csv.DictReader(file)
@@ -160,7 +149,18 @@ def main():
         write_to_csv(salesforecast_csv_file_path, "a", forecast_rows, header)
 
         # calculate ARR per month
-        calculate_ARR_per_month(forecast_rows)
+        monthly_ARR = calculate_ARR_per_month(forecast_rows)
 
+        header = ["Month", "ARR_per_month"]
 
-main()
+        # write to csv file
+        monthly_arr_csv_file_path = str(
+            pathlib.Path(
+                pathlib.Path(__file__).parent.resolve(),
+                "data",
+                "output",
+                "taskA_ARR_per_month.csv",
+            )
+        )
+
+        write_to_csv(monthly_arr_csv_file_path, "w", monthly_ARR, header)
