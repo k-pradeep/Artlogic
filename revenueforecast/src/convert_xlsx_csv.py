@@ -6,8 +6,8 @@ import csv
 
 def convert_xlsx_csv():
     # Open the XLSX file using zipfile
-    current_working_directory = pathlib.Path(__file__).parent.resolve()
-    xlsx_file_path = pathlib.PureWindowsPath(
+    current_working_directory = pathlib.Path(__file__).parent.parent.resolve()
+    xlsx_file_path = pathlib.Path(
         current_working_directory, "data", "input", "data.xlsx"
     )
     print("before zipfile")
@@ -139,7 +139,7 @@ if __name__ == "__main__":
 
     # convert xlsx file to csv files
     convert_xlsx_csv()
-    current_working_directory = pathlib.Path(__file__).parent.resolve()
+    current_working_directory = pathlib.Path(__file__).parent.parent.resolve()
 
     # corrects schedule_next_scheduled_date column in sheet 2
     csv_file_path = pathlib.Path(

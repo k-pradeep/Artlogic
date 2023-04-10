@@ -4,7 +4,7 @@ from helper import write_to_csv
 
 # Initialize cash in bank as zero for each day of 2023
 cummulative_sum_cash_in_bank = [0] * 365
-current_working_directory = pathlib.Path(__file__).parent.resolve()
+current_working_directory = pathlib.Path(__file__).parent.parent.resolve()
 
 
 def calculate_next_billing_date(billing_period_end_date, next_billing_date):
@@ -34,7 +34,8 @@ def cash_per_day(cash_in_bank, sheet_name):
 
     write_to_csv(output_csv_file, "w", data, header)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     csv_file = pathlib.Path(current_working_directory, "data", "input", "sheet1.csv")
     # Process data in Sheet A
     cash_in_bank = [0] * 365
