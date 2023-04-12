@@ -1,0 +1,7 @@
+__pycache__
+airflow.cfg
+airflow.db
+revenueforecast/data/logs/dag_processor_manager/dag_processor_manager.log
+revenueforecast/data/unittests.cfg
+revenueforecast/data/logs/scheduler/latest
+revenueforecast/data/logs/scheduler/2023-04-10/revenueforecaster.py.log
