@@ -1,8 +1,7 @@
-from re import M
 import unittest
 import TaskA
 import datetime
-from helper import write_to_csv
+
 
 header = [
     "currency",
@@ -55,7 +54,6 @@ class Test_TaskA(unittest.TestCase):
                 )
 
     def test_calculate_monthlyARR(self, data):
-
         global forecast_rows
         for row in data:
             # load rows in memory
@@ -90,7 +88,7 @@ class Test_TaskA(unittest.TestCase):
 
             monthly_ARR = TaskA.calculate_ARR_per_month(forecast_rows)
 
-            # print(monthly_ARR)
+            #print(monthly_ARR)
             self.assertEqual(monthly_ARR[0], ["January", 99.0])
 
 

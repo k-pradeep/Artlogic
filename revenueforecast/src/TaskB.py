@@ -35,8 +35,10 @@ def cash_per_day(cash_in_bank, sheet_name):
     write_to_csv(output_csv_file, "w", data, header)
 
 
-if __name__ == "__main__":
-    csv_file = pathlib.Path(current_working_directory, "data", "input", "sheet1.csv")
+def forecast_cash_in_bank():
+    csv_file = pathlib.Path(
+        current_working_directory, "data", "input", "sheet1.csv"
+    )  # noqa: E501
     # Process data in Sheet A
     cash_in_bank = [0] * 365
     with open(csv_file, "r") as file:
@@ -157,7 +159,6 @@ if __name__ == "__main__":
 
         # cummulative sum
         for days_from_new_year in range(len(cummulative_sum_cash_in_bank)):
-
             # generate cummulative sum by adding current day revenue from sheets with yesterday's revenue subtotal
             if days_from_new_year != 0:
                 cummulative_sum_cash_in_bank[days_from_new_year] = (

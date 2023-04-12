@@ -132,10 +132,10 @@ def correct_dateobjects(csv_file):
                 ]
             )
 
-    write_to_csv(csv_file_path, "w", data, header)
+    write_to_csv(csv_file, "w", data, header)
 
 
-if __name__ == "__main__":
+def process_xlsx():
 
     # convert xlsx file to csv files
     convert_xlsx_csv()
