@@ -1,0 +1,16 @@
+revenueforecast/__pycache__
+
+revenueforecast/data/logs/dag_processor_manager/dag_processor_manager.log
+revenueforecast/data/logs/scheduler/2023-04-10/revenueforecaster.py.log
+revenueforecast/data/logs/scheduler/latest
+revenueforecast/data/airflow.cfg
+revenueforecast/data/airflow.db
+revenueforecast/data/unittests.cfg
+revenueforecast/src/__pycache__/convert_xlsx_csv.cpython-37.pyc
+revenueforecast/src/__pycache__/helper.cpython-37.pyc
+revenueforecast/src/__pycache__/helper.cpython-39.pyc
+revenueforecast/src/__pycache__/revenueforecaster.cpython-37.pyc
+revenueforecast/src/__pycache__/TaskA.cpython-37.pyc
+revenueforecast/src/__pycache__/TaskB.cpython-37.pyc
+taskB_output.log
+revenueforecast/__pycache__/helper.cpython-39.pyc
