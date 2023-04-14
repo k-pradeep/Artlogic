@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 # Initialize cash in bank as zero for each day of 2023
 cummulative_sum_cash_in_bank = [0] * 365
-current_working_directory = pathlib.Path(__file__).parent.resolve()
+current_working_directory = pathlib.Path(__file__).parent.parent.resolve()
 
 
 def calculate_next_billing_date(
@@ -21,7 +21,7 @@ def calculate_next_billing_date(
         billing_period_start_date = next_billing_date
 
         # period end is period start + 1 month
-        billing_period_end_date = period_start + relativedelta(months=1)
+        billing_period_end_date = billing_period_start_date + relativedelta(months=1)
         # print(f'period_end is {billing_period_end_date}')
         next_billing_date = billing_period_end_date + timedelta(1)
 
