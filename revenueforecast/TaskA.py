@@ -1,7 +1,7 @@
 import csv
 import pathlib
 import datetime
-from helper import write_to_csv
+from helper import write_to_csv, is_date_in_2023
 
 forecast_rows = []
 
@@ -21,30 +21,27 @@ def get_forecasted_price(price):
 def calcuate_subsciption_growth(
     currency, price, period_start, period_end, next_billing_date
 ):
+    from dateutil.relativedelta import relativedelta
+
     global forecast_rows
+
     while next_billing_date < datetime.datetime.strptime(
         "2024-01-01 00:00:00.000000 UTC", "%Y-%m-%d %H:%M:%S.%f %Z"
     ):
         price = round(get_forecasted_price(price), 2)
-        total_days_in_billing = period_end - period_start
-
-        if total_days_in_billing.days < 0:
-            raise Exception("End date is less than start date")
+        # total_days_in_billing = period_end - period_start
 
         period_start = next_billing_date
-        # #get last day of the month
-        # last_day = calendar.monthrange(period_start.date().year, period_start.date().month)[1]
-        # period_end = datetime.datetime(period_start.date().year, period_start.date().month, last_day)
-        # get period_end depending upon time delta of period_start and period_end
-        period_end = period_start + total_days_in_billing
+        # period_end = period_start + total_days_in_billing
+        # period end is period start + 1 month
+
+        period_end = period_start + relativedelta(months=1)
+        print(f"period start is {period_start },period_end is {period_end}")
         next_billing_date = period_end + datetime.timedelta(1)
+        # print(f'next_billing_date is {next_billing_date}')
 
         # add to forecasted_rows only if the next billing date lies in 2023
-        if next_billing_date >= datetime.datetime.strptime(
-            "2023-01-01 00:00:00.000000 UTC", "%Y-%m-%d %H:%M:%S.%f %Z"
-        ) and next_billing_date < datetime.datetime.strptime(
-            "2024-01-01 00:00:00.000000 UTC", "%Y-%m-%d %H:%M:%S.%f %Z"
-        ):
+        if is_date_in_2023(next_billing_date):
             forecast_rows.append(
                 [currency, price, period_start, period_end, next_billing_date]
             )
@@ -61,9 +58,13 @@ def calculate_ARR_per_month(subscription_data):
         # last element is next_billing_date
         # second element is price i.e., index 1
         billing_month = row[-1].month
+        # print(f'billing_month is {billing_month}')
+
         if str(billing_month) in revenue_per_month:
+            # print('In if logic')
             revenue_per_month[str(billing_month)] += round(row[1], 2)
         else:
+            # print('in else logic')
             revenue_per_month[str(billing_month)] = round(row[1], 2)
 
     # generate Monthly ARR
@@ -102,18 +103,24 @@ if __name__ == "__main__":
             )
 
             # add element to forecasted_rows list
-            if next_billing_date >= datetime.datetime.strptime(
-                "2023-01-01 00:00:00.000000 UTC", "%Y-%m-%d %H:%M:%S.%f %Z"
-            ) and next_billing_date < datetime.datetime.strptime(
-                "2024-01-01 00:00:00.000000 UTC", "%Y-%m-%d %H:%M:%S.%f %Z"
-            ):
+            # if next_billing_date >= datetime.datetime.strptime(
+            #     "2023-01-01 00:00:00.000000 UTC", "%Y-%m-%d %H:%M:%S.%f %Z"
+            # ) and next_billing_date < datetime.datetime.strptime(
+            #     "2024-01-01 00:00:00.000000 UTC", "%Y-%m-%d %H:%M:%S.%f %Z"
+            # ):
+            if is_date_in_2023(next_billing_date):
                 forecast_rows.append(
                     [currency, price, period_start, period_end, next_billing_date]
                 )
-
+                print(
+                    f"forecast_rows length before subscription growth is {len(forecast_rows)}"
+                )
             # calculate subcription_growth
             calcuate_subsciption_growth(
                 currency, price, period_start, period_end, next_billing_date
+            )
+            print(
+                f"forecast_rows length after subscription growth is {len(forecast_rows)}"
             )
 
         # write forecasted rows to csv
