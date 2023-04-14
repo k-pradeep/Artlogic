@@ -79,7 +79,7 @@ def calculate_ARR_per_month(subscription_data):
 
 
 if __name__ == "__main__":
-    current_working_directory = pathlib.Path(__file__).parent.resolve()
+    current_working_directory = pathlib.Path(__file__).parent.parent.resolve()
     csv_file = pathlib.Path(
         current_working_directory, "data", "input", "sheet1.csv"
     )  # noqa E501
@@ -127,7 +127,7 @@ if __name__ == "__main__":
         # output file location
         salesforecast_csv_file_path = str(
             pathlib.Path(
-                pathlib.Path(__file__).parent.resolve(),
+                pathlib.Path(__file__).parent.parent.resolve(),
                 "data",
                 "output",
                 "taskA_subcription_growth.csv",
@@ -152,7 +152,7 @@ if __name__ == "__main__":
         # write to csv file
         monthly_arr_csv_file_path = str(
             pathlib.Path(
-                pathlib.Path(__file__).parent.resolve(),
+                pathlib.Path(__file__).parent.parent.resolve(),
                 "data",
                 "output",
                 "taskA_ARR_per_month.csv",
